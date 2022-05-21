@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "types": [
+        "../Express-TS-JEST-SQL-DB-REST-API-template/types"
+      ]
+    }
+  }
+}
+//Here I'm showing where React can find types from backend. Configuration file is config-override.js

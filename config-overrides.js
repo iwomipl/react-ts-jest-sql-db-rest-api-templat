@@ -6,5 +6,4 @@ module.exports = {
         aliasDangerous(configPaths('./tsconfig.paths.json'))
     ),
 }
-
 //This is basically  configuration for my app to be able to find types from another TS app

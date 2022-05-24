@@ -1,0 +1,14 @@
+.loginForm {
+    text-align: right;
+    position: absolute;
+    right: 10px;
+    top: 30px;
+    color: #282c34;
+}
+
+.loginFormInput{
+    display: block;
+}
+.loginFormInput input{
+    margin-left: 10px;
+}

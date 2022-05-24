@@ -1,13 +1,13 @@
 import React, { useState} from "react";
 
-import './RegisterForm.css'
+import './LoginForm.css'
 
-export const RegisterForm = ()=>{
+export const LoginForm = ()=>{
     const [form, setForm] = useState({
         login: '',
         password: '',
-        confirmPassword: '',
     })
+
     const updateForm = (key: string, value:string)=>{
         setForm(form=>({
             ...form,
@@ -30,37 +30,28 @@ export const RegisterForm = ()=>{
         } catch (err){
             console.log(err)
         }
-        }
+    }
     return (<form
             onSubmit={handleSubmit}
-            className='registerForm'
+            className='loginForm'
         >
-            <label className='registerFormInput'>
-                Your login:<br/>
+            <label className='loginFormInput'>
+                login:
                 <input
                     type="text"
                     onChange={(e)=> updateForm('login', e.target.value)}
                 />
             </label>
 
-            <label className='registerFormInput'>
-                Your password:<br/>
+            <label className='loginFormInput'>
+                password:
                 <input
                     type="password"
                     onChange={(e)=> updateForm('password', e.target.value)}
                 />
             </label>
-            <label className='registerFormInput'>
-                Confirm password:<br/>
-                <input
-                    type="password"
-                    onChange={(e)=> updateForm('confirmPassword', e.target.value)}
-                />
-            </label>
 
-            <button type="submit">Register</button>
+            <button type="submit">Login</button>
         </form>
-        )
+    )
 }
-
-//@TODO add basic crossvalidation to password and confirming it.

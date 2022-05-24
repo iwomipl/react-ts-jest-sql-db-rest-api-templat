@@ -8,6 +8,7 @@ function App() {
   return (
     <main className="app">
         <Header/>
+        <hr/>
         <Routes>
             <Route path='/user' element={<UserView/>}></Route>
             <Route path='/product' element={<UserView/>}></Route>

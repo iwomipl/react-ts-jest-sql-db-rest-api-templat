@@ -1,4 +1,6 @@
 .navigation {
     color: #61dafb;
     text-align: center;
+    display: grid;
+    align-items: end;
 }

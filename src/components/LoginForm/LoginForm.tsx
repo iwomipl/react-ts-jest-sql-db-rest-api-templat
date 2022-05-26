@@ -1,7 +1,8 @@
-import React, { useState} from "react";
+import React, {ChangeEvent, useState} from "react";
 import { Btn } from "../common/Btn/Btn";
 
 import './LoginForm.css'
+import {Input} from "../common/Input/Input";
 
 export const LoginForm = ()=>{
     const [form, setForm] = useState({
@@ -9,7 +10,7 @@ export const LoginForm = ()=>{
         password: '',
     })
 
-    const updateForm = (key: string, value:string)=>{
+    const updateForm = (key: string, value:string): void=>{
         setForm(form=>({
             ...form,
             [key]: value,
@@ -36,22 +37,20 @@ export const LoginForm = ()=>{
             onSubmit={handleSubmit}
             className='loginForm'
         >
-            <label className='loginFormInput'>
-                email:
-                <input
-                    type="email"
-                    onChange={(e)=> updateForm('email', e.target.value)}
-                />
-            </label>
-
-            <label className='loginFormInput'>
-                password:
-                <input
-                    type="password"
-                    onChange={(e)=> updateForm('password', e.target.value)}
-                />
-            </label>
-
+            <Input
+                className="loginFormInput"
+                text="email"
+                type="email"
+                value={form.email}
+                function={(e: ChangeEvent<HTMLInputElement>)=> updateForm('email', e.target.value)}
+            />
+            <Input
+                className="loginFormInput"
+                text="password"
+                type="password"
+                value={form.email}
+                function={(e: ChangeEvent<HTMLInputElement>)=> updateForm('password', e.target.value)}
+            />
             <Btn text="Login"/>
         </form>
     )

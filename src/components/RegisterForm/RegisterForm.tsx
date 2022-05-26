@@ -1,7 +1,8 @@
-import React, { useState} from "react";
+import React, {ChangeEvent, useState} from "react";
 
 import './RegisterForm.css'
 import {Btn} from "../common/Btn/Btn";
+import {Input} from "../common/Input/Input";
 
 export const RegisterForm = ()=>{
     const [form, setForm] = useState({
@@ -14,6 +15,7 @@ export const RegisterForm = ()=>{
             ...form,
             [key]: value,
         }))
+        console.log(form)
     }
 
     const handleSubmit = async (e: React.FormEvent)=>{
@@ -36,28 +38,45 @@ export const RegisterForm = ()=>{
             onSubmit={handleSubmit}
             className='registerForm'
         >
-            <label className='registerFormInput'>
-                Your email:<br/>
-                <input
-                    type="email"
-                    onChange={(e)=> updateForm('email', e.target.value)}
-                />
-            </label>
+            <Input
+                className="registerFormInput"
+                text="Your email"
+                type="email"
+                value={form.email}
+                potentialBr={true}
+                function={(e: ChangeEvent<HTMLInputElement>)=> updateForm('email', e.target.value)}
+            />
+            <Input
+                className="registerFormInput"
+                text="Your password"
+                type="password"
+                value={form.password}
+                potentialBr={true}
+                function={(e: ChangeEvent<HTMLInputElement>)=> updateForm('password', e.target.value)}
+            />
+            <Input
+                className="registerFormInput"
+                text="Confirm password"
+                type="password"
+                value={form.password}
+                potentialBr={true}
+                function={(e: ChangeEvent<HTMLInputElement>)=> updateForm('confirmPassword', e.target.value)}
+            />
 
-            <label className='registerFormInput'>
-                Your password:<br/>
-                <input
-                    type="password"
-                    onChange={(e)=> updateForm('password', e.target.value)}
-                />
-            </label>
-            <label className='registerFormInput'>
-                Confirm password:<br/>
-                <input
-                    type="password"
-                    onChange={(e)=> updateForm('confirmPassword', e.target.value)}
-                />
-            </label>
+            {/*<label className='registerFormInput'>*/}
+            {/*    Your password:<br/>*/}
+            {/*    <input*/}
+            {/*        type="password"*/}
+            {/*        onChange={(e)=> updateForm('password', e.target.value)}*/}
+            {/*    />*/}
+            {/*</label>*/}
+            {/*<label className='registerFormInput'>*/}
+            {/*    Confirm password:<br/>*/}
+            {/*    <input*/}
+            {/*        type="password"*/}
+            {/*        onChange={(e)=> updateForm('confirmPassword', e.target.value)}*/}
+            {/*    />*/}
+            {/*</label>*/}
 
             <Btn text="Register"/>
         </form>

@@ -1,23 +1,24 @@
 import React, {ChangeEvent, useState} from "react";
-import { Btn } from "../common/Btn/Btn";
+import {Btn} from "../common/Btn/Btn";
 
 import './LoginForm.css'
 import {Input} from "../common/Input/Input";
+import {NavLink} from "react-router-dom";
 
-export const LoginForm = ()=>{
+export const LoginForm = () => {
     const [form, setForm] = useState({
         email: '',
         password: '',
     })
 
-    const updateForm = (key: string, value:string): void=>{
-        setForm(form=>({
+    const updateForm = (key: string, value: string): void => {
+        setForm(form => ({
             ...form,
             [key]: value,
         }))
     }
 
-    const handleSubmit = async (e: React.FormEvent)=>{
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
             const result = await fetch('http://localhost:3001/user/login', {
@@ -29,7 +30,7 @@ export const LoginForm = ()=>{
             });
             const data: {} = await result.json();
             console.log(data);
-        } catch (err){
+        } catch (err) {
             console.log(err)
         }
     }
@@ -42,16 +43,20 @@ export const LoginForm = ()=>{
                 text="email"
                 type="email"
                 value={form.email}
-                function={(e: ChangeEvent<HTMLInputElement>)=> updateForm('email', e.target.value)}
+                potentialBr={true}
+                function={(e: ChangeEvent<HTMLInputElement>) => updateForm('email', e.target.value)}
             />
             <Input
                 className="loginFormInput"
                 text="password"
                 type="password"
                 value={form.email}
-                function={(e: ChangeEvent<HTMLInputElement>)=> updateForm('password', e.target.value)}
+                potentialBr={true}
+                function={(e: ChangeEvent<HTMLInputElement>) => updateForm('password', e.target.value)}
             />
             <Btn text="Login"/>
+            <br/>
+            <NavLink to='/register'>Click to Register</NavLink>
         </form>
     )
 }

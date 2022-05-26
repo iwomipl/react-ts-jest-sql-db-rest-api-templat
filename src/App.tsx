@@ -1,20 +1,25 @@
 import React from 'react';
-import './App.css';
-import {Route, Routes } from 'react-router-dom';
 import { Header } from './components/Header/Header';
-import { UserView } from './views/UserView';
+import {RegisterForm} from "./components/RegisterForm/RegisterForm";
+import {Route, Routes} from "react-router-dom";
+import {UserView} from "./views/UserView";
+import {ProductView} from "./views/ProductView";
+import {BasketView} from "./views/BasketView";
+import {LoginForm} from "./components/LoginForm/LoginForm";
+
+import './App.css';
 
 function App() {
   return (
     <main className="app">
         <Header/>
-        <hr/>
         <Routes>
-            <Route path='/user' element={<UserView/>}></Route>
-            <Route path='/product' element={<UserView/>}></Route>
-            <Route path='/basket' element={<UserView/>}></Route>
+            <Route path='/user' element={<UserView/>}/>
+            <Route path='/products' element={<ProductView/>}/>
+            <Route path='/basket' element={<BasketView/>}/>
+            <Route path='/login' element={<LoginForm/>}/>
+            <Route path='/register' element={<RegisterForm/>}/>
         </Routes>
-
     </main>
   );
 }

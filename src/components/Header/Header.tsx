@@ -1,20 +1,25 @@
 import React, {useState} from "react";
 import {NavLink} from "react-router-dom";
-import { LoginForm } from "../LoginForm/LoginForm";
 
 import './header.css'
 
-export const Header = ()=>{
+export const Header = () => {
     const [loggedIn, setLoggedIn] = useState(false);
     return (<div className="navigation">
-        <div className="navigation__elements">
         <h1>My REACT to API App</h1>
-        <NavLink to='/user'>User</NavLink> | <NavLink to='/pruducts'>Products</NavLink> | <NavLink to='/basket'>Basket</NavLink>
+        <div className="navigation__elements">
+            <NavLink to='/user' className="navigation__button">User</NavLink>
+            <NavLink to='/products' className="navigation__button">Product</NavLink>
+            <NavLink to='/basket' className="navigation__button">Basket</NavLink>
+            {!loggedIn
+                ? <div className="signUpOrRegister">
+                    <NavLink className="btn" to='/login'>Login</NavLink>
+                    <NavLink className="btn" to='/register'>Register</NavLink>
+                </div>
+                : null}
         </div>
-        {!loggedIn
-            ? <div className="navigation__elements">
-            <LoginForm/>
-        </div>
-        : null}
+
+
+        <hr/>
     </div>)
 }

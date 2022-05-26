@@ -3,6 +3,7 @@ import React, {ChangeEvent, useState} from "react";
 import './RegisterForm.css'
 import {Btn} from "../common/Btn/Btn";
 import {Input} from "../common/Input/Input";
+import {NavLink} from "react-router-dom";
 
 export const RegisterForm = ()=>{
     const [form, setForm] = useState({
@@ -62,23 +63,9 @@ export const RegisterForm = ()=>{
                 potentialBr={true}
                 function={(e: ChangeEvent<HTMLInputElement>)=> updateForm('confirmPassword', e.target.value)}
             />
-
-            {/*<label className='registerFormInput'>*/}
-            {/*    Your password:<br/>*/}
-            {/*    <input*/}
-            {/*        type="password"*/}
-            {/*        onChange={(e)=> updateForm('password', e.target.value)}*/}
-            {/*    />*/}
-            {/*</label>*/}
-            {/*<label className='registerFormInput'>*/}
-            {/*    Confirm password:<br/>*/}
-            {/*    <input*/}
-            {/*        type="password"*/}
-            {/*        onChange={(e)=> updateForm('confirmPassword', e.target.value)}*/}
-            {/*    />*/}
-            {/*</label>*/}
-
             <Btn text="Register"/>
+            <br/>
+            <NavLink to='/login'>Click to Login</NavLink>
         </form>
         )
 }

@@ -1,10 +1,11 @@
 import React, { useState} from "react";
+import { Btn } from "../common/Btn/Btn";
 
 import './LoginForm.css'
 
 export const LoginForm = ()=>{
     const [form, setForm] = useState({
-        login: '',
+        email: '',
         password: '',
     })
 
@@ -18,7 +19,7 @@ export const LoginForm = ()=>{
     const handleSubmit = async (e: React.FormEvent)=>{
         e.preventDefault();
         try {
-            const result = await fetch('http://localhost:3001', {
+            const result = await fetch('http://localhost:3001/user/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -36,10 +37,10 @@ export const LoginForm = ()=>{
             className='loginForm'
         >
             <label className='loginFormInput'>
-                login:
+                email:
                 <input
-                    type="text"
-                    onChange={(e)=> updateForm('login', e.target.value)}
+                    type="email"
+                    onChange={(e)=> updateForm('email', e.target.value)}
                 />
             </label>
 
@@ -51,7 +52,7 @@ export const LoginForm = ()=>{
                 />
             </label>
 
-            <button type="submit">Login</button>
+            <Btn text="Login"/>
         </form>
     )
 }

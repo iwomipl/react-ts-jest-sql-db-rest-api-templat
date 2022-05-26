@@ -1,10 +1,11 @@
 import React, { useState} from "react";
 
 import './RegisterForm.css'
+import {Btn} from "../common/Btn/Btn";
 
 export const RegisterForm = ()=>{
     const [form, setForm] = useState({
-        login: '',
+        email: '',
         password: '',
         confirmPassword: '',
     })
@@ -18,7 +19,7 @@ export const RegisterForm = ()=>{
     const handleSubmit = async (e: React.FormEvent)=>{
         e.preventDefault();
         try {
-            const result = await fetch('http://localhost:3001', {
+            const result = await fetch('http://localhost:3001/user/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -36,10 +37,10 @@ export const RegisterForm = ()=>{
             className='registerForm'
         >
             <label className='registerFormInput'>
-                Your login:<br/>
+                Your email:<br/>
                 <input
-                    type="text"
-                    onChange={(e)=> updateForm('login', e.target.value)}
+                    type="email"
+                    onChange={(e)=> updateForm('email', e.target.value)}
                 />
             </label>
 
@@ -58,7 +59,7 @@ export const RegisterForm = ()=>{
                 />
             </label>
 
-            <button type="submit">Register</button>
+            <Btn text="Register"/>
         </form>
         )
 }

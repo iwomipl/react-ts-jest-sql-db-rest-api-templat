@@ -4,10 +4,11 @@ import './RegisterForm.css'
 import {Btn} from "../common/Btn/Btn";
 import {Input} from "../common/Input/Input";
 import {NavLink} from "react-router-dom";
+import {fetchFunction} from "../../utils/fetchFunction";
 
 export const RegisterForm = ()=>{
     const [form, setForm] = useState({
-        email: '',
+        login: '',
         password: '',
         confirmPassword: '',
     })
@@ -16,21 +17,13 @@ export const RegisterForm = ()=>{
             ...form,
             [key]: value,
         }))
-        console.log(form)
     }
 
     const handleSubmit = async (e: React.FormEvent)=>{
         e.preventDefault();
         try {
-            const result = await fetch('http://localhost:3001/user/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(form),
-            });
-            const data: {} = await result.json();
-            console.log(data);
+            const result = await fetchFunction('user/register', form)
+            console.log(result);
         } catch (err){
             console.log(err)
         }
@@ -41,11 +34,11 @@ export const RegisterForm = ()=>{
         >
             <Input
                 className="registerFormInput"
-                text="Your email"
-                type="email"
-                value={form.email}
+                text="Your login"
+                type="text"
+                value={form.login}
                 potentialBr={true}
-                function={(e: ChangeEvent<HTMLInputElement>)=> updateForm('email', e.target.value)}
+                function={(e: ChangeEvent<HTMLInputElement>)=> updateForm('login', e.target.value)}
             />
             <Input
                 className="registerFormInput"

@@ -1,14 +1,23 @@
-export const fetchFunction = async (path: string, formObject: { login: string, password: string })=>{
-    //@TODO finish creating function accessing checking and storing tokens from API maybe use Redux to check if token is there, and pass it in this function
-    // const tokenObj = await localStorage.getItem('token')
-    //     ?  await localStorage.getItem('token')
-    //     : null;
+export const fetchFunction = async (path: string, formObject: { login: string, password: string }) => {
+    const tokenObj = localStorage.getItem('token')
+        ?  localStorage.getItem('token')
+        : null;
+    const headersObj: {} = tokenObj
+        ? {
+        'Content-Type': 'application/json',
+    }
+    : {
+            'Content-Type': 'application/json',
+            Authorization: tokenObj,
+        }
     const result = await fetch(`http://localhost:3001/${path}`, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
+        headers: headersObj,
         body: JSON.stringify(formObject),
     });
-    return await result.json();
+    const data = await result.json();
+    if (data.token){
+        localStorage.setItem('token', data.token);
+    }
+    return data;
 }

@@ -22,7 +22,7 @@ export const RegisterForm = ()=>{
     const handleSubmit = async (e: React.FormEvent)=>{
         e.preventDefault();
         try {
-            const result = await fetchFunction('user/register', form)
+            const result = await fetchFunction('user/register', 'POST', form)
             console.log(result);
         } catch (err){
             console.log(err)

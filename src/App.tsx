@@ -6,8 +6,10 @@ import {UserView} from "./views/UserView";
 import {ProductView} from "./views/ProductView";
 import {BasketView} from "./views/BasketView";
 import {LoginForm} from "./components/LoginForm/LoginForm";
+import {Logout} from "./components/Logout/Logout";
 
 import './App.css';
+
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
             <Route path='/basket' element={<BasketView/>}/>
             <Route path='/login' element={<LoginForm/>}/>
             <Route path='/register' element={<RegisterForm/>}/>
+            <Route path='/logout' element={<Logout/>}/>
         </Routes>
     </main>
   );

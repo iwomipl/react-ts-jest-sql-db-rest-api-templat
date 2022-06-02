@@ -31,7 +31,6 @@ export const fetchFunction = async (path: string, methodFromCall: string, formOb
                     localStorage.setItem('token', data.token);
             }
             if (result.status === 401) {
-                console.log('here')
                 localStorage.removeItem('token');
             }
             return data;

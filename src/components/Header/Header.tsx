@@ -18,7 +18,7 @@ export const Header = () => {
                     <NavLink className="btn" to='/login'>Login</NavLink>
                     <NavLink className="btn" to='/register'>Register</NavLink>
                 </div>
-                :  <NavLink className="btn" to='/logout'>Logout</NavLink>}
+                :  <NavLink className="btn logout" to='/logout'>Logout</NavLink>}
         </div>
 
 

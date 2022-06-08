@@ -10,3 +10,6 @@ button, .btn {
     text-decoration: none;
     margin: 5px;
 }
+.logout{
+    text-align: right;
+}

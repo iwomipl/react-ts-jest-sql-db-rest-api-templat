@@ -1,4 +1,5 @@
-export const fetchFunction = async (path: string, methodFromCall: string, formObject?: { login: string, password: string }) => {
+import {ReturnedFromUser} from '.././../../Express-TS-JEST-SQL-DB-REST-API-template/types'
+export const fetchFunction = async (path: string, methodFromCall: string, formObject?: { login?: string, password: string }): Promise<ReturnedFromUser> => {
     const tokenObj = localStorage.getItem('token')
         ? localStorage.getItem('token')
         : null;
@@ -25,7 +26,7 @@ export const fetchFunction = async (path: string, methodFromCall: string, formOb
         };
     try {
         const result = await fetch(`http://localhost:3001/${path}`, fetchObj);
-        if (result.status === 200 || result.status === 401) {
+        if (result.status === 200 || result.status === 401 || (result.status === 400)) {
             const data = await result.json();
             if (data.token) {
                     localStorage.setItem('token', data.token);
@@ -34,7 +35,7 @@ export const fetchFunction = async (path: string, methodFromCall: string, formOb
                 localStorage.removeItem('token');
             }
             return data;
-        } else {
+        } else  {
             return {
                 message: 'You Are Not Logged In',
                 "loginStatus": false,
@@ -42,9 +43,8 @@ export const fetchFunction = async (path: string, methodFromCall: string, formOb
         }
     }catch(err){
         return {
-            message: 'You Are Not Logged In',
+            message: `You Are Not Logged In. Something's wrong`,
             "loginStatus": false,
         }
-
     }
 }

@@ -12,14 +12,27 @@ export const LoginForm = () => {
     const dispatch = useDispatch();
     const {loginStatus} = useSelector((store: RootState) => store.loggedInStatus);
     const navigate = useNavigate();
+    const [checking, setChecking] = useState(true);
     const [form, setForm] = useState({
         login: '',
         password: '',
     })
 
-    useEffect(()=>{
-        loginStatus ?? navigate('/user');
-    })
+    useEffect(() => {
+        setChecking(true);
+        if (loginStatus) navigate('/user');
+        (async () => {
+            const result = await fetchFunction('user/', 'GET');
+            dispatch(changeLoggedInValue(result.loginStatus));
+        })();
+        setChecking(false);
+        if (loginStatus) {
+            navigate('/user')
+        } else {
+            localStorage.removeItem('token');
+        }
+    }, [])
+
     const updateForm = (key: string, value: string): void => {
         setForm(form => ({
             ...form,
@@ -41,7 +54,10 @@ export const LoginForm = () => {
             console.log('error ', err)
         }
     }
-    return (<form
+    return (<>{checking ?
+            <>Checking if logged in</>
+        :
+        <form
             onSubmit={handleSubmit}
             className='loginForm'
         >
@@ -64,6 +80,7 @@ export const LoginForm = () => {
             <Btn text="Login"/>
             <br/>
             <NavLink to='/register'>Click to Register</NavLink>
-        </form>
+        </form>}</>
+
     )
 }
